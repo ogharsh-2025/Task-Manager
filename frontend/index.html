@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Containerized Task Manager</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/dashboard">
+          <img src="/assets/logo.svg" alt="" />
+          <span>Task Manager</span>
+        </a>
+        <nav class="nav-list">
+          <a class="nav-item active" href="/dashboard">Dashboard</a>
+          <a class="nav-item" href="/tasks">Tasks</a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="page-title">
+            <h1>Containerized Task Manager</h1>
+            <p>Operational task tracking for focused teams.</p>
+          </div>
+          <a class="button primary" href="/tasks">Open Tasks</a>
+        </header>
+        <section class="content">
+          <div class="stats-grid" id="statsGrid"></div>
+          <div class="dashboard-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <h2>Task Checkbox Tracker</h2>
+                <a class="button ghost" href="/tasks">Manage</a>
+              </div>
+              <div id="recentTasks" class="loading-state">Loading tasks...</div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h2>Productivity Graph</h2>
+              </div>
+              <div style="padding: 18px; display: flex; flex-direction: column; gap: 16px;">
+                <div class="summary-stack" id="workloadSummary" style="padding: 0;"></div>
+                <div style="position: relative; height: 220px; width: 100%;">
+                  <canvas id="productivityChart"></canvas>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script src="/js/api.js"></script>
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>

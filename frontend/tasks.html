@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tasks | Containerized Task Manager</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/tasks.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/dashboard">
+          <img src="/assets/logo.svg" alt="" />
+          <span>Task Manager</span>
+        </a>
+        <nav class="nav-list">
+          <a class="nav-item" href="/dashboard">Dashboard</a>
+          <a class="nav-item active" href="/tasks">Tasks</a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="page-title">
+            <h1>Tasks</h1>
+            <p>Plan, search, prioritize, and close work.</p>
+          </div>
+          <button class="button primary" id="openCreateModal">Add Task</button>
+        </header>
+        <section class="content">
+          <div class="toolbar">
+            <input id="searchInput" type="search" placeholder="Search tasks" />
+            <select id="statusFilter" aria-label="Filter by status">
+              <option value="">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
+            <select id="priorityFilter" aria-label="Filter by priority">
+              <option value="">All priorities</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <select id="sortSelect" aria-label="Sort tasks">
+              <option value="created_at:desc">Newest</option>
+              <option value="due_date:asc">Due soon</option>
+              <option value="priority:desc">Priority</option>
+              <option value="title:asc">Title</option>
+            </select>
+          </div>
+          <section class="panel">
+            <div class="panel-header">
+              <h2>Task Table</h2>
+              <span class="muted" id="taskCount">0 tasks</span>
+            </div>
+            <div class="table-wrap" id="tasksTableWrap"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="taskModal" aria-hidden="true">
+      <form class="modal" id="taskForm">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Task</h2>
+          <button class="icon-button" type="button" id="closeModal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-grid">
+            <input type="hidden" id="taskId" />
+            <div class="field">
+              <label for="title">Title</label>
+              <input id="title" name="title" required maxlength="180" />
+            </div>
+            <div class="field">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" maxlength="5000"></textarea>
+            </div>
+            <div class="field">
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="status">Status</label>
+              <select id="status" name="status">
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="dueDate">Due date</label>
+              <input id="dueDate" name="dueDate" type="date" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="button ghost" type="button" id="cancelModal">Cancel</button>
+          <button class="button primary" type="submit">Save Task</button>
+        </div>
+      </form>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script src="/js/api.js"></script>
+    <script src="/js/tasks.js"></script>
+  </body>
+</html>
